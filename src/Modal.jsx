@@ -67,9 +67,9 @@ const SimpleModal = (props) =>  {
   const [open, setOpen] = React.useState(false);
 
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
 
   const handleClose = () => {
     setOpen(false);
@@ -140,8 +140,6 @@ const SimpleModal = (props) =>  {
                 </TableBody>
             </Table>
         </TableContainer>
-
-        {/* <SimpleModal /> */}
         </div>
       </Modal>
     </>

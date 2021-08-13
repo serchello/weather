@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 
 
-
 const api = require("axios").create({
   baseURL: 'https://www.metaweather.com/api/location',
 });
@@ -50,7 +49,7 @@ app.get("/location", async (req, res) => {
 
 
 app.listen(2400, () => {
-	console.log("Server started at port 2400 a");
+	console.log("Server started at port 2400");
 });
 
 
