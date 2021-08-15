@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
-import SimpleModal from './Modal';
+import Location from './component/Location';
+import { trackPromise, usePromiseTracker} from 'react-promise-tracker';
 
 const styles = {
     display:'inline',
@@ -13,15 +14,17 @@ const styles = {
     marginRight:10
     }
 
+const area = 'locations';
 
-function NavBar(){
+function LocationSearch(){
 
-    const [city,setSearch] = useState();
-    const [record,setRecord] = useState([]);
+    const [city,setCity] = useState();
+    const [locations,setLocations] = useState([]);
 
     const [open, setOpen] = useState(false);
     const [title, setTitle] = useState("");
     const [consolidated_weather, setWeather] = useState([]);
+    const { promiseInProgress } = usePromiseTracker({ area });
 
     const handleClose = () => {
         setOpen(false);
@@ -32,50 +35,38 @@ function NavBar(){
 
         setOpen(true);
         setTitle(title);
-
-        fetch(`/location/?query=${woeid}`)
+        
+        trackPromise(fetch(`/location/?query=${woeid}`)
         .then(async response => {
             let result = await response.json();
             setWeather(result.data.consolidated_weather);
         })
         .catch(error => {
             console.log('Error getting data: ' + error);
-        });
+        }));
     };
 
 
-
-    
     const inputEvent = (event) => {
-           let data = event.target.value;
-           if(data !== ""){
-               setSearch(data);
-           }
-           
-        // fetch(`/locationSearch/?query=${data}`)
-        // .then(async response => {
-        //     let result = await response.json();
-        //     setRecord(result.data);
-        // })
-        // .catch(error => {
-        //     console.log('Error getting data: ' + error);
-        // });
+        let data = event.target.value;
+        if(data !== ""){
+            setCity(data);
+        }
     };
 
     useEffect(() => {
-        fetch(`/locationSearch/?query=${city}`)
+        trackPromise(fetch(`/locationSearch/?query=${city}`)
         .then(async response => {
             let result = await response.json();
-            setRecord(result.data);
+            setLocations(result.data);
         })
         .catch(error => {
             console.log('Error getting data: ' + error);
-        });
+        }));
     }, [city]);
 
-
    
-    const result = record.map((value, index)=>{
+    const result = locations.map((value, index)=>{
         return <div style={styles} key={index} onClick={handleOpen.bind(this, value.title, value.woeid)}>
                     {value.title}
                 </div>
@@ -91,11 +82,14 @@ function NavBar(){
                 onChange = {inputEvent}
             />
             <div>
-                { record && result } 
+            {promiseInProgress
+            ? <div>Wait, loading data!</div>
+            :  locations && result }
+                
             </div>
-           <SimpleModal open={open} onClose={handleClose} title={title} data={consolidated_weather}/>
+           <Location open={open} onClose={handleClose} title={title} data={consolidated_weather}/>
         </>
     );
 }
 
-export default NavBar;
+export default LocationSearch;

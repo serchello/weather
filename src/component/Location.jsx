@@ -8,6 +8,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { usePromiseTracker} from 'react-promise-tracker';
+
+const area = Modal;
 
 
 function rand() {
@@ -60,35 +63,24 @@ root: {
 },
 }))(TableRow);
 
-const SimpleModal = (props) =>  {
+const Location = (props) =>  {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
-
-
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
+  const { promiseInProgress } = usePromiseTracker({ area });
 
   const handleClose = () => {
     setOpen(false);
   };
 
-//   const body = (
-//     // <div style={modalStyle} className={classes.paper}>
-//     //   <h2 id="simple-modal-title">{props.title}</h2>
-//     //   <p id="simple-modal-description">
-          
-//     //   {/* {props.data} */}
-//     //   {props.data.map(data => <div>{data.created}</div>)}
-//     //   </p>
-//     //   <SimpleModal />
-//     // </div>
-//   );
 
   return (
     <>
+       {promiseInProgress
+            ? <div>Wait, loading data!</div>
+            :  
+            
       <Modal
         open={open}
         onClose={handleClose}
@@ -142,8 +134,9 @@ const SimpleModal = (props) =>  {
         </TableContainer>
         </div>
       </Modal>
+      }
     </>
   );
 }
 
-export default SimpleModal;
+export default Location;
