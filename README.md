@@ -1,7 +1,7 @@
-# rm -rf node_modules/     << delete node_modules
-# npm i nodemon --save-dev << "devDependencies"
-# 2) npm start
-# 3) npm run nodemon
+## rm -rf node_modules/     << delete node_modules
+## npm i nodemon --save-dev << "devDependencies"
+## 2) npm start
+## 3) npm run nodemon
 
 # Getting Started with Create React App
 
