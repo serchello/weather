@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 const PORT = process.env.PORT || 2400;
-const locationRouter = require('./src/location/router');
+const locationRouter = require('./server/location.router');
 
 app.use(locationRouter);
 

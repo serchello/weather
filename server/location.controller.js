@@ -1,4 +1,4 @@
-const { getLocationSearch, getLocation } = require('./model');
+const { getLocationSearch, getLocation } = require('./location.model');
 
 
 async function locationSearch(req, res) {
