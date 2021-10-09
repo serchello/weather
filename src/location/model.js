@@ -12,7 +12,7 @@ async function getLocationSearch(req, res) {
 
   } catch (err) {
 
-		res.status(500).json({ message: err });
+		return { message: err };
 	}
 }
 
@@ -24,7 +24,7 @@ async function getLocation(req, res) {
       return { data: response.data };
 
 	} catch (err) {
-		res.status(500).json({ message: err });
+		return { message: err };
 	}
 }
 

@@ -11,7 +11,6 @@
     "axios": "^0.21.1",
     "express": "^4.17.1",
     "material-ui-search-bar": "^1.0.0",
-    "nodemon": "^2.0.12",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-promise-tracker": "^2.1.0",
@@ -21,7 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "nodemon": "nodemon server.js",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "watch": "npm run nodemon & npm start"
   },
   "eslintConfig": {
     "extends": [
@@ -40,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
   }
 }
