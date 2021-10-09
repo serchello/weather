@@ -54,7 +54,7 @@ const StyledTableCell = withStyles((theme) => ({
       fontSize: 14,
     },
   }))(TableCell);
-  
+
 const StyledTableRow = withStyles((theme) => ({
 root: {
     '&:nth-of-type(odd)': {
@@ -79,8 +79,8 @@ const Location = (props) =>  {
     <>
        {promiseInProgress
             ? <div>Wait, loading data!</div>
-            :  
-            
+            :
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -88,7 +88,7 @@ const Location = (props) =>  {
         aria-describedby="simple-modal-description"
         {...props}
       >
-           
+
         {/* {body} */}
         <div style={modalStyle} className={classes.paper}>
         <h2 id="simple-modal-title">{props.title}</h2>
@@ -98,7 +98,7 @@ const Location = (props) =>  {
                 <caption>A basic table example with a caption</caption>
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell>Date</StyledTableCell> 
+                        <StyledTableCell>Date</StyledTableCell>
                         <StyledTableCell align="right" >Weather</StyledTableCell>
                         <StyledTableCell align="right" >Wind direction</StyledTableCell>
                         <StyledTableCell align="right" >Min temp</StyledTableCell>
@@ -112,21 +112,21 @@ const Location = (props) =>  {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-            
+
                 {props.data.map((row, idx) => (
                 <StyledTableRow key={idx}>
-                    <StyledTableCell key={row.weather_state_name} component="th" scope="row">{row.applicable_date}</StyledTableCell >
-                    <StyledTableCell  align="right">{row.weather_state_name}</StyledTableCell >
-                    <StyledTableCell  align="right">{row.wind_direction_compass}</StyledTableCell >
-                    <StyledTableCell  align="right">{ Math.floor(row.min_temp * 100) / 100 }</StyledTableCell >
-                    <StyledTableCell  align="right">{ Math.floor(row.max_temp * 100) / 100 }</StyledTableCell >
-                    <StyledTableCell  align="right">{ Math.floor(row.wind_speed * 100) / 100 }</StyledTableCell >
-                    <StyledTableCell  align="right">{ Math.floor(row.wind_direction * 100) / 100 }</StyledTableCell >
-                    <StyledTableCell  align="right">{row.air_pressure}</StyledTableCell >
-                    <StyledTableCell  align="right">{row.humidity}</StyledTableCell >
-                    <StyledTableCell  align="right">{ Math.floor(row.visibility * 100) / 100}</StyledTableCell >
-                    <StyledTableCell  align="right">{row.predictability}</StyledTableCell >
-                </StyledTableRow >
+                    <StyledTableCell key={row.weather_state_name} component="th" scope="row">{row.applicable_date}</StyledTableCell>
+                    <StyledTableCell  align="right">{row.weather_state_name}</StyledTableCell>
+                    <StyledTableCell  align="right">{row.wind_direction_compass}</StyledTableCell>
+                    <StyledTableCell  align="right">{ Math.floor(row.min_temp * 100) / 100 }</StyledTableCell>
+                    <StyledTableCell  align="right">{ Math.floor(row.max_temp * 100) / 100 }</StyledTableCell>
+                    <StyledTableCell  align="right">{ Math.floor(row.wind_speed * 100) / 100 }</StyledTableCell>
+                    <StyledTableCell  align="right">{ Math.floor(row.wind_direction * 100) / 100 }</StyledTableCell>
+                    <StyledTableCell  align="right">{row.air_pressure}</StyledTableCell>
+                    <StyledTableCell  align="right">{row.humidity}</StyledTableCell>
+                    <StyledTableCell  align="right">{ Math.floor(row.visibility * 100) / 100}</StyledTableCell>
+                    <StyledTableCell  align="right">{row.predictability}</StyledTableCell>
+                </StyledTableRow>
                 ))}
 
                 </TableBody>

@@ -1,5 +1,6 @@
-1) npm run nodemon
+ rm -rf node_modules/
 2) npm start
+3) npm run starting
 
 # Getting Started with Create React App
 
